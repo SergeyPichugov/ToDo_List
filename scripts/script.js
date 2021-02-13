@@ -15,8 +15,7 @@ const render = function(){
    todoList.textContent = '';
    todoCompleted.textContent = '';
    
-   todoData.forEach(function(item){
-      
+   todoData.forEach(function(item, i){
       const li = document.createElement('li');
       li.classList.add('todo-item');
       
@@ -42,7 +41,6 @@ const render = function(){
          
       const btnRemove = li.querySelector('.todo-remove');
       btnRemove.addEventListener('click', function(){
-         let i = todoData.indexOf(item);
          todoData.splice(i, 1);
          localStorage.setItem('todoList', JSON.stringify(todoData));
          render();
@@ -56,7 +54,7 @@ const render = function(){
 todoControl.addEventListener('submit', function(event){
    event.preventDefault();
 
-   if (headerInput.value === '') { 
+   if (headerInput.value.trim() === '') { 
       return;
    }
 
